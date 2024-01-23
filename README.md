@@ -1,12 +1,12 @@
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Quadrature Decoder with Up/Down Counter — Use Case for Configurable Logic Block (CLB) using the PIC16F13145 Microcontroller with MCC Melody
+# Quadrature Decoder With Up/Down Counter — Use Case for Configurable Logic Block (CLB) Using the PIC16F13145 Microcontroller With MCC Melody
 
 This repository provides an MPLAB® X project that implements a quadrature decoder circuit using the CLB peripheral.
 
 The CLB peripheral is a collection of logic elements that can be programmed to perform a wide variety of digital logic functions. The logic function may be completely combinatorial, sequential, or a combination of the two, enabling users to incorporate hardware-based custom logic into their applications.
 
-Quadrature signals are the standard output waveforms of incremental encoders that come with motors. They provide information about motor direction and shaft position. There are two types of encoders - linear and rotary - and each can have two types of measurement: Absolute and incremental. There are also different technologies used for encoders: Magnetic, optical, inductive, capacitive, and laser.
+Quadrature signals are the standard output waveforms of incremental encoders that come with motors. They provide information about motor direction and shaft position. There are two types of encoders - linear and rotary - and each can have two types of measurement: absolute and incremental. There are also different technologies used for encoders: magnetic, optical, inductive, capacitive, and laser.
 
 The main categories of encoders are absolute and incremental. A rotary absolute encoder outputs a unique code for each position of the motor's shaft. If the power of this encoder is lost and the shaft is rotated, the encoder can return the correct position of the shaft. The rotary incremental encoder generates pulses while the shaft is rotated. If any pulse is missed, then the shaft position cannot be determined correctly anymore. This application will use a rotary incremental encoder to show how to decode quadrature signals.
 
@@ -18,19 +18,19 @@ The following image highlights the clockwise (CW) and counterclockwise (CCW) con
 
 More details and code examples on the PIC16F13145 can be found at the following links:
 
-- [PIC16F13145 Product Page](https://www.microchip.com/en-us/product/PIC16F13145?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_PIC16F13145&utm_content=pic16f13145-spi-ws2812-mplab-mcc&utm_bu=MCU08)
+- [PIC16F13145 Product Page](https://www.microchip.com/en-us/product/PIC16F13145?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_Apps_PIC16F13145&utm_content=pic16f13145-quadrature-decoder-timers-mplab-mcc&utm_bu=MCU08)
 - [PIC16F13145 Code Examples on Discover](https://mplab-discover.microchip.com/v2?dsl=PIC16F13145)
 - [PIC16F13145 Code Examples on GitHub](https://github.com/microchip-pic-avr-examples/?q=PIC16F13145)
 
 ## Software Used
 
-- [MPLAB X IDE v6.15 or newer](http://www.microchip.com/mplab/mplab-x-ide)
-- [MPLAB® XC8 v2.45 or newer](http://www.microchip.com/mplab/compilers)
+- [MPLAB X IDE v6.15 or newer](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_Apps_PIC16F13145&utm_content=pic16f13145-quadrature-decoder-timers-mplab-mcc&utm_bu=MCU08)
+- [MPLAB® XC8 v2.45 or newer](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_Apps_PIC16F13145&utm_content=pic16f13145-quadrature-decoder-timers-mplab-mcc&utm_bu=MCU08)
 - [PIC16F1xxxx_DFP v1.23.382 or newer](https://packs.download.microchip.com/)
 
 ## Hardware Used
 
-- The [PIC16F13145 Curiosity Nano Development board](https://www.microchip.com/en-us/development-tool/EV06M52A?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_PIC16F13145&utm_content=pic16f13145-tachometer-mplab-mcc&utm_bu=MCU08) is used as a test platform:
+- The [PIC16F13145 Curiosity Nano Development board](https://www.microchip.com/en-us/development-tool/EV06M52A?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_Apps_PIC16F13145&utm_content=pic16f13145-quadrature-decoder-timers-mplab-mcc&utm_bu=MCU08) is used as a test platform:
   <br><img src="images/pic16f13145-cnano.png" width="600">
 
 - Oscilloscope/Logic analyzer
@@ -49,7 +49,7 @@ To program the Curiosity Nano board with this MPLAB X project, follow the steps 
 
 ## Concept
 
-This application showcases the capabilities of the CLB peripheral by creating a logic circuit that decodes the waveforms from a rotary encoder and a 4-bit up/down counter circuit used to track the ticks. The circuit has two inputs, the phase signals from the encoder, and outputs four signals corresponding to the 4-bit up/down counter.
+This application showcases the capabilities of the CLB peripheral by creating a quadrature decoder that decodes the waveforms from a rotary encoder and a 4-bit up/down counter circuit used to track the decoded counts. The circuit has two inputs, the decoded counts from the encoder, and outputs four signals corresponding to the 4-bit up/down counter.
 The decoder circuit implementation is figured in the picture below:
 
 <br><img src="images/clb_full_circuit.png" width="800">
@@ -167,7 +167,7 @@ In this demo, everytime a clockwise or counterclockwise pulse is detected a mess
 
 <br><img src="./images/data_visualizer_2.png" width="800">
 
-Below is presented a logic analyzer capture that contains the waveforms corresponding to the messages sent to the terminal in the above figure.
+Below is presented a logic analyzer capture that contains the waveforms corresponding to the messages sent to the terminal in the figure above.
 
 <br><img src="./images/demo.png" width="800">
 
