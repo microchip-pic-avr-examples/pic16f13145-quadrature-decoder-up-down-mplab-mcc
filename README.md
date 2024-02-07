@@ -1,12 +1,12 @@
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Quadrature Decoder with Up/Down Counter — Use Case for Configurable Logic Block (CLB) using the PIC16F13145 Microcontroller with MCC Melody
+# Quadrature Decoder With Up/Down Counter — Use Case for Configurable Logic Block (CLB) Using the PIC16F13145 Microcontroller With MCC Melody
 
 This repository provides an MPLAB® X project that implements a quadrature decoder circuit using the CLB peripheral.
 
 The CLB peripheral is a collection of logic elements that can be programmed to perform a wide variety of digital logic functions. The logic function may be completely combinatorial, sequential, or a combination of the two, enabling users to incorporate hardware-based custom logic into their applications.
 
-Quadrature signals are the standard output waveforms of incremental encoders that come with motors. They provide information about motor direction and shaft position. There are two types of encoders - linear and rotary - and each can have two types of measurement: Absolute and incremental. There are also different technologies used for encoders: Magnetic, optical, inductive, capacitive, and laser.
+Quadrature signals are the standard output waveforms of incremental encoders that come with motors. They provide information about motor direction and shaft position. There are two types of encoders - linear and rotary - and each can have two types of measurement: absolute and incremental. There are also different technologies used for encoders: magnetic, optical, inductive, capacitive, and laser.
 
 The main categories of encoders are absolute and incremental. A rotary absolute encoder outputs a unique code for each position of the motor's shaft. If the power of this encoder is lost and the shaft is rotated, the encoder can return the correct position of the shaft. The rotary incremental encoder generates pulses while the shaft is rotated. If any pulse is missed, then the shaft position cannot be determined correctly anymore. This application will use a rotary incremental encoder to show how to decode quadrature signals.
 
@@ -208,7 +208,7 @@ In this demo, everytime a clockwise or counterclockwise pulse is detected a mess
 
 <br><img src="./images/data_visualizer_2.png" width="800">
 
-Below is presented a logic analyzer capture that contains the waveforms corresponding to the messages sent to the terminal in the above figure.
+Below is presented a logic analyzer capture that contains the waveforms corresponding to the messages sent to the terminal in the figure above.
 
 <br><img src="./images/demo.png" width="800">
 
