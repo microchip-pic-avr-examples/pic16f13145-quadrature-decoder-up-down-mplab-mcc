@@ -39,6 +39,10 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     CLB1_Initialize();
     PIN_MANAGER_Initialize();
+    CLC1_Initialize();
+    CLC2_Initialize();
+    CLC3_Initialize();
+    CLC4_Initialize();
     CRC_Initialize();
     EUSART1_Initialize();
     NVM_Initialize();

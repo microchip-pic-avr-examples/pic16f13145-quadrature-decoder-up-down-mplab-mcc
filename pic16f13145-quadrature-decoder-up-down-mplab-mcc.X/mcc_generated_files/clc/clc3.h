@@ -1,15 +1,14 @@
 /**
- * System Driver Header File
+ * CLC3 Generated Driver API Header File.
  * 
- * @file system.h
+ * @file clc3.h
  * 
- * @defgroup systemdriver System Driver
+ * @defgroup  clc3 CLC3
  * 
- * @brief This file contains the API prototype for the System Driver.
+ * @brief This file contains the API prototypes for the CLC3 driver.
  *
- * @version Driver Version 2.0.2
+ * @version CLC3 Driver Version 1.1.0
 */
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -31,31 +30,57 @@
     THIS SOFTWARE.
 */
 
-#ifndef SYSTEM_H
-#define	SYSTEM_H
+#ifndef CLC3_H
+ #define CLC3_H
 
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "config_bits.h"
-#include "../system/clock.h"
-#include "../clb/clb1.h"
-#include "../system/pins.h"
-#include "../clc/clc1.h"
-#include "../clc/clc2.h"
-#include "../clc/clc3.h"
-#include "../clc/clc4.h"
-#include "../crc/crc.h"
-#include "../uart/eusart1.h"
-#include "../nvm/nvm.h"
-#include "../system/interrupt.h"
+
+#define CLC3_Initialize  CLC3_Initialize
+#define CLC3_Enable CLC3_Enable
+#define CLC3_Disable CLC3_Disable
+#define CLC3_ISR CLC3_ISR
+#define CLC3_OutputStatusGet CLC3_OutputStatusGet
+#define CLC3_CLCI_SetInterruptHandler CLC3_CLCI_SetInterruptHandler
+
 
 /**
- * @ingroup systemdriver
- * @brief Initializes the system module. This is called only once before calling other APIs.
+ * @ingroup clc3
+ * @brief  Initializes the CLC3. This routine configures the CLC3 specific control registers.
  * @param None.
  * @return None.
-*/
-void SYSTEM_Initialize(void);
+ */
+void CLC3_Initialize(void);
 
-#endif //SYSTEM_H
+/**
+ * @ingroup clc3
+ * @brief Enables the CLC3 module.     
+ * @param None.
+ * @return None.
+ */
+void CLC3_Enable(void);
+
+/**
+ * @ingroup clc3
+ * @brief Disables the CLC3 module.     
+ * @param None.
+ * @return None.
+ */
+void CLC3_Disable(void);
+
+
+/**
+ * @ingroup clc3
+ * @brief Returns the output pin status of the CLC module.
+ * @param  None.
+ * @retval True - Output is 1.
+ * @retval False - Output is 0.
+ */
+bool CLC3_OutputStatusGet(void); 
+
+#endif  // CLC3_H
+/**
+ End of File
+*/
+

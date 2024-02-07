@@ -134,7 +134,39 @@ uint32_t CLB1_SWIN_Read32(void);
  */
 uint32_t CLB1_GetCLBSWOUT(void);
 
+/**
+ * @ingroup clb1
+ * @brief Implements the Interrupt Service Routine (ISR) for the CLB1I0 interrupt events.
+ * @pre CLB1_Initialize() is already called.
+ * @param None.
+ * @return None.
+ */
+void CLB1_CLB1I0_ISR(void);
 
+/**
+* @ingroup clb1
+ * @brief Sets the callback function for the interrupt event.
+ * @param *InterruptHandler - Callback function for the interrupt event.
+ * @return None.
+*/
+void CLB1_CLB1I0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+ * @ingroup clb1
+ * @brief Implements the Interrupt Service Routine (ISR) for the CLB1I1 interrupt events.
+ * @pre CLB1_Initialize() is already called.
+ * @param None.
+ * @return None.
+ */
+void CLB1_CLB1I1_ISR(void);
+
+/**
+* @ingroup clb1
+ * @brief Sets the callback function for the interrupt event.
+ * @param *InterruptHandler - Callback function for the interrupt event.
+ * @return None.
+*/
+void CLB1_CLB1I1_SetInterruptHandler(void (* InterruptHandler)(void));
 #endif // CLB1_H
 /**
  End of File

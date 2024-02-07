@@ -32,41 +32,56 @@
 */
 #include "mcc_generated_files/system/system.h"
 
-/*
-    Main application
-*/
+volatile uint16_t overflow_count = 0, underflow_count = 0;
+
+void Overflow_Handler(void);
+void Underflow_Handler(void);
 
 int main(void)
 {
-    uint8_t value, old_value, overflow_count = 0, underflow_count = 0;
-    int16_t result;
+    uint8_t value, old_value;
+    int32_t result;
     
     SYSTEM_Initialize(); 
+    
+    /* Enable the Global Interrupts */
+    INTERRUPT_GlobalInterruptEnable(); 
 
-    /* Reset the UP/DOWN Counter */
+    /* Enable the Peripheral Interrupts */
+    INTERRUPT_PeripheralInterruptEnable(); 
+
+
+    /* Reset the UP/DOWN counter */
     CLBSWIN0 = 1;
     __delay_ms(20);
     CLBSWIN0 = 0;
     
+    /* Setting the callbacks for the overflow and underflow events */
+    CLB1_CLB1I0_SetInterruptHandler(Overflow_Handler);
+    CLB1_CLB1I1_SetInterruptHandler(Underflow_Handler);
+    
     while(1)
     {
+        /* Storing the old value read on the UP/DOWN counter output */
         old_value = value;
-        value = PORTC & 0x0F;
-        
-        if((value == 0x00) & (old_value == 0x0F))
-        {
-            overflow_count++;
-        }
-        
-        if((value == 0x0F) & (old_value == 0x00))
-        {
-            underflow_count++;
-        }
-        
+        /* Reading the output of the UP/DOWN counter (RC0, RC1, RC2, RC3) */
+        value = PORTC & (0x0F);       
+        /* The result gets printed only if a change occurred */
         if(old_value != value)
         {
-            result = overflow_count * 16 - underflow_count * 16 + value;
-            printf("%d ticks\r\n", result);
+            /* Computing the current result */
+            result = (int32_t)overflow_count * 16 - (int32_t)underflow_count * 16 + (int32_t)value;
+            printf("%ld ticks\r\n", result);
         }   
     }    
+}
+
+void Overflow_Handler(void)
+{
+    overflow_count++;
+}
+
+void Underflow_Handler(void)
+{
+    underflow_count++;
 }

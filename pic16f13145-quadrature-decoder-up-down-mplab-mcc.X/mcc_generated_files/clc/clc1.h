@@ -1,15 +1,14 @@
 /**
- * System Driver Header File
+ * CLC1 Generated Driver API Header File.
  * 
- * @file system.h
+ * @file clc1.h
  * 
- * @defgroup systemdriver System Driver
+ * @defgroup  clc1 CLC1
  * 
- * @brief This file contains the API prototype for the System Driver.
+ * @brief This file contains the API prototypes for the CLC1 driver.
  *
- * @version Driver Version 2.0.2
+ * @version CLC1 Driver Version 1.1.0
 */
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -31,31 +30,57 @@
     THIS SOFTWARE.
 */
 
-#ifndef SYSTEM_H
-#define	SYSTEM_H
+#ifndef CLC1_H
+ #define CLC1_H
 
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "config_bits.h"
-#include "../system/clock.h"
-#include "../clb/clb1.h"
-#include "../system/pins.h"
-#include "../clc/clc1.h"
-#include "../clc/clc2.h"
-#include "../clc/clc3.h"
-#include "../clc/clc4.h"
-#include "../crc/crc.h"
-#include "../uart/eusart1.h"
-#include "../nvm/nvm.h"
-#include "../system/interrupt.h"
+
+#define CLC1_Initialize  CLC1_Initialize
+#define CLC1_Enable CLC1_Enable
+#define CLC1_Disable CLC1_Disable
+#define CLC1_ISR CLC1_ISR
+#define CLC1_OutputStatusGet CLC1_OutputStatusGet
+#define CLC1_CLCI_SetInterruptHandler CLC1_CLCI_SetInterruptHandler
+
 
 /**
- * @ingroup systemdriver
- * @brief Initializes the system module. This is called only once before calling other APIs.
+ * @ingroup clc1
+ * @brief  Initializes the CLC1. This routine configures the CLC1 specific control registers.
  * @param None.
  * @return None.
-*/
-void SYSTEM_Initialize(void);
+ */
+void CLC1_Initialize(void);
 
-#endif //SYSTEM_H
+/**
+ * @ingroup clc1
+ * @brief Enables the CLC1 module.     
+ * @param None.
+ * @return None.
+ */
+void CLC1_Enable(void);
+
+/**
+ * @ingroup clc1
+ * @brief Disables the CLC1 module.     
+ * @param None.
+ * @return None.
+ */
+void CLC1_Disable(void);
+
+
+/**
+ * @ingroup clc1
+ * @brief Returns the output pin status of the CLC module.
+ * @param  None.
+ * @retval True - Output is 1.
+ * @retval False - Output is 0.
+ */
+bool CLC1_OutputStatusGet(void); 
+
+#endif  // CLC1_H
+/**
+ End of File
+*/
+

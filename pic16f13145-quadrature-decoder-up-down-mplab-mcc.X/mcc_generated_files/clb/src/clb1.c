@@ -35,6 +35,8 @@
  */
 #include "../../system/system.h"
 
+static void (*CLB1_CLB1I0_InterruptHandler)(void);
+static void (*CLB1_CLB1I1_InterruptHandler)(void);
 
 extern uint16_t start_clb_config;
 extern uint16_t end_clb_config;
@@ -65,16 +67,14 @@ void CLB1_Initialize(void)
     /* OESEL6 0; OESEL7 0; */
     CLBPPSCON4 = 0x0;
 
-    // Clearing CLB1I0 IF flag.
+    // Clearing CLB1I0 IF flag before enabling the interrupt.
     PIR7bits.CLB1IF0 = 0;
-    // Disabled CLB1I0 CLB1 interrupt
-    PIE7bits.CLB1IE0 = 0;
-
-    // Clearing CLB1I1 IF flag.
+    // Enabled CLB1I0 CLB1 interrupt
+    PIE7bits.CLB1IE0 = 1;
+    // Clearing CLB1I1 IF flag before enabling the interrupt.
     PIR7bits.CLB1IF1 = 0;
-    // Disabled CLB1I1 CLB1 interrupt
-    PIE7bits.CLB1IE1 = 0;
-
+    // Enabled CLB1I1 CLB1 interrupt
+    PIE7bits.CLB1IE1 = 1;
     // Clearing CLB1I2 IF flag.
     PIR7bits.CLB1IF2 = 0;
     // Disabled CLB1I2 CLB1 interrupt
@@ -202,6 +202,38 @@ uint32_t CLB1_GetCLBSWOUT(void)
 	return result;
 }
 
+void CLB1_CLB1I0_ISR(void)
+{
+    if (PIR7bits.CLB1IF0 == 1)
+    {
+        PIR7bits.CLB1IF0 = 0;
+        if (CLB1_CLB1I0_InterruptHandler != NULL)
+        {
+            CLB1_CLB1I0_InterruptHandler();
+        }     
+    }
+}
 
+void CLB1_CLB1I0_SetInterruptHandler(void (* InterruptHandler)(void))
+{
+    CLB1_CLB1I0_InterruptHandler = InterruptHandler;
+}
+
+void CLB1_CLB1I1_ISR(void)
+{
+  if (PIR7bits.CLB1IF1 == 1)
+  {
+        PIR7bits.CLB1IF1 = 0;
+        if (CLB1_CLB1I1_InterruptHandler != NULL)
+        {
+            CLB1_CLB1I1_InterruptHandler();
+        }
+  }
+}
+
+void CLB1_CLB1I1_SetInterruptHandler(void (* InterruptHandler)(void))
+{
+    CLB1_CLB1I1_InterruptHandler = InterruptHandler;
+}
 
 
